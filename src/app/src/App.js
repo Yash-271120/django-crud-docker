@@ -18,7 +18,7 @@ export function App() {
             <input type="text" />
           </div>
           <div style={{"marginTop": "5px"}}>
-            <button>Add ToDo!</button>
+            <button>Add ToDos!</button>
           </div>
         </form>
       </div>
