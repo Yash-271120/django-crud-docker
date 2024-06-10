@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.urls import path, include
 from .views import TodoListView
+from .view2 import index
 
 urlpatterns = [
     path('todos/', TodoListView.as_view(), name='signup'),
+    path("test/", include("rest.todo.todo_urls"), name="index")
 ]
