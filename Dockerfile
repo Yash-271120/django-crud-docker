@@ -11,17 +11,20 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 
 
 # Mongo
-RUN ln -s /bin/echo /bin/systemctl
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
-RUN echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-RUN apt-get -y update
-RUN apt-get install -y mongodb-org
+# RUN ln -s /bin/echo /bin/systemctl
+# RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
+# RUN echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+# RUN apt-get -y update
+# RUN apt-get install -y mongodb-org
 
 # Install Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get -y update
 RUN apt-get install -y yarn
 
 # Install PIP
-RUN easy_install pip
+# RUN easy_install pip
 
 
 ENV ENV_TYPE staging
@@ -36,3 +39,15 @@ COPY src/requirements.txt .
 
 # install dependencies
 RUN pip install -r requirements.txt
+
+#create folders
+RUN mkdir /src
+RUN mkdir /src/app
+RUN mkdir /src/rest
+
+# rest
+COPY src/rest ./src/rest
+
+# app
+COPY src/app/package.json ./src/app/package.json
+COPY src/app ./src/app
