@@ -1,2 +1,3 @@
-/test
+/test/src/db
 .env
+/src/myenv
