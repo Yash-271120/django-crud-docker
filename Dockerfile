@@ -32,7 +32,7 @@ ENV MONGO_HOST mongo
 ENV MONGO_PORT 27017
 ##########
 
-ENV PYTHONPATH=$PYTHONPATH:/src/
+ENV PYTHONPATH=$PYTHONPATH:/src/rest
 
 # copy the dependencies file to the working directory
 COPY src/requirements.txt .
