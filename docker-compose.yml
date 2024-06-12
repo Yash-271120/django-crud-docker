@@ -38,5 +38,10 @@ services:
       - "27017:27017"
     volumes:
       - ${ADBREW_CODEBASE_PATH}/db:/data/db
-      - ${ADBREW_CODEBASE_PATH}/scripts:/docker-entrypoint-initdb.d
     command: /usr/bin/mongod --bind_ip 0.0.0.0
+
+  seed:
+    build: ./db
+    container_name: seed
+    depends_on:
+      - mongo
