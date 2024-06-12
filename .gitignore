@@ -1,3 +1,5 @@
 /test/src/db
 .env
 /src/myenv
+
+__pycache__/
